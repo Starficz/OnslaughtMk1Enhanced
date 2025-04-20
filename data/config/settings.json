@@ -1,0 +1,5 @@
+{
+  "plugins":{
+    "OMEPaperdollCombatUIAdder":"org.starficz.onslaughtmk1enhanced.PaperdollUIPanelAdder"
+  }
+}
