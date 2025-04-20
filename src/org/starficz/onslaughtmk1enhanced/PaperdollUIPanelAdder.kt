@@ -36,7 +36,7 @@ class PaperdollUIPanelAdder: BaseEveryFrameCombatPlugin() {
         if (uiElements.any { it is CustomPanelAPI && it.plugin is ExtendableCustomUIPanelPlugin }) return // return if added
         val shipField = shipInfo.getFieldsMatching(fieldAssignableTo = ShipAPI::class.java)[0]
 
-        if((shipField.get(shipInfo) as ShipAPI).hullSpec.baseHullId != "onslaught_mk1") return // this plugin would work with all modular ships
+        if((shipField.get(shipInfo) as ShipAPI?)?.hullSpec?.baseHullId != "onslaught_mk1") return // this plugin would work with all modular ships
 
         shipInfo.CustomPanel(200f, 200f) { plugin ->
             anchorInBottomLeftOfParent()
@@ -45,7 +45,7 @@ class PaperdollUIPanelAdder: BaseEveryFrameCombatPlugin() {
             plugin.render { alpha ->
                 initRendering()
 
-                val ship = shipField.get(shipInfo) as ShipAPI
+                val ship = shipField.get(shipInfo) as ShipAPI? ?: return@render
                 val targetWidth = ( ship.hullSize.ordinal / 5f ) * 170f
                 val moduleScaleFactor = min(targetWidth / max(ship.spriteAPI.width, ship.spriteAPI.height), 2f)
 
