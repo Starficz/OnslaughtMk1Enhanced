@@ -1,2 +1,2 @@
 name,id,tier,rarity,tech/manufacturer,tags,uiTags,base value,unlocked,hidden,hiddenEverywhere,cost_frigate,cost_dest,cost_cruiser,cost_capital,script,desc,short,sModDesc,sprite
-Armor Parent,armor_parent,,,,,,,,TRUE,TRUE,0,0,0,0,org.starficz.onslaughtmk1enhanced.ArmorParent,,,,,
+Armor Parent,onslaughtmk1enhanced_armor_parent,,,,,,,,TRUE,TRUE,0,0,0,0,org.starficz.onslaughtmk1enhanced.ArmorParent,,,,,

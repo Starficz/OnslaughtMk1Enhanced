@@ -1,13 +1,10 @@
 package org.starficz.onslaughtmk1enhanced
 
-import com.fs.graphics.util.Fader
-import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.ArmorGridAPI
 import com.fs.starfarer.api.combat.DamageType
 import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.util.Misc
-import org.starficz.onslaughtmk1enhanced.UIFramework.ReflectionUtils.get
 import java.awt.Color
 import java.awt.Point
 import kotlin.math.*
@@ -213,40 +210,6 @@ fun Float.isCloseTo(other: Float, epsilon: Float): Boolean {
     if (this.isNaN() || other.isNaN())  return false
     if (this.isInfinite() || other.isInfinite()) return this == other
     return abs(this - other) <= epsilon
-}
-
-
-var dialogTime: Long = 0
-var commandTime: Long = 0
-var hudTime: Long = 0
-
-const val DIALOG_ALPHA = 0.33f
-const val DIALOG_FADE_OUT_TIME = 333f
-const val DIALOG_FADE_IN_TIME = 250f
-const val COMMAND_FADE_OUT_TIME = 200f
-const val COMMAND_FADE_IN_TIME = 111f
-
-// Used to properly interpolate between UI fade colors
-fun getUIAlpha(inUIRenderMethod: Boolean): Float {
-    val alpha =
-    if (!Global.getCombatEngine().isUIShowingHUD && !Global.getCombatEngine().isUIShowingDialog) {
-        0f
-    } else if (Global.getCombatEngine().combatUI.isShowingCommandUI) {
-        commandTime = System.currentTimeMillis()
-        (if (inUIRenderMethod) 1f else 0.5f) - min((commandTime - hudTime) / COMMAND_FADE_OUT_TIME, 1f).pow(10f)
-    } else if (Global.getCombatEngine().isUIShowingDialog) {
-        dialogTime = System.currentTimeMillis()
-        if (inUIRenderMethod) 1f
-        else Misc.interpolate(1f, DIALOG_ALPHA, min((dialogTime - hudTime) / DIALOG_FADE_OUT_TIME, 1f))
-    } else if (dialogTime > commandTime) {
-        hudTime = System.currentTimeMillis()
-        if (inUIRenderMethod) 1f
-        else Misc.interpolate(DIALOG_ALPHA, 1f, min((hudTime - dialogTime) / DIALOG_FADE_IN_TIME, 1f))
-    } else {
-        hudTime = System.currentTimeMillis()
-        min((hudTime - commandTime) / COMMAND_FADE_IN_TIME, 1f).pow(0.5f)
-    }
-    return alpha.coerceIn(0f, (Global.getCombatEngine().combatUI.get("fader") as Fader).brightness)
 }
 
 private data class LMS(val L: Float, val M: Float, val S: Float)
