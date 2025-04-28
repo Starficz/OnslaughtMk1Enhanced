@@ -1,3 +1,6 @@
+## Version 1.0.2
+- Fixed duplicated .ship contents (resulting in duplicated mounts)
+
 ## Version 1.0.1
 - Fixed NPE
 
