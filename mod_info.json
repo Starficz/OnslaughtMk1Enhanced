@@ -3,7 +3,7 @@
   "name": "Onslaught Mk1 Enhanced",
   "author": "Starficz",
   "utility": false,
-  "version": { "major": '1', "minor": '0', "patch": '2' },
+  "version": { "major": '1', "minor": '0', "patch": '3' },
   "description": "The Onslaught Mk1, but with fixed AI, armor preview paperdolls, and explosion occlusion.",
   "gameVersion": "0.98a-RC8",
   "jars": [ "jars/OnslaughtMk1Enhanced.jar" ],
